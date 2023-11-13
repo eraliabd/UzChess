@@ -4,13 +4,13 @@ from django.utils.crypto import get_random_string
 
 from django.utils.translation import gettext_lazy as _
 
-import utils.models
+from utils.models import BaseModel
 from user.models import CustomUser as User
 from course.models import Course
 from library.models import Book
 
 
-class CartItem(utils.models.BaseModel):
+class CartItem(BaseModel):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='user_cart_item'
     )
@@ -30,7 +30,7 @@ class OrderStatusChoice(models.Choices):
     canceled = _("Canceled")
 
 
-class Order(utils.models.BaseModel):
+class Order(BaseModel):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='orders'
     )
